@@ -1,0 +1,87 @@
+{
+  "name": "sugar-gacha",
+  "productName": "SugarGacha",
+  "version": "1.0.0",
+  "description": "BadClaude whips your AI. SugarGacha feeds it candy. A tiny offline desktop widget that spins a candy wheel + slot machine and pastes a line of praise into your AI chat box.",
+  "main": "main.js",
+  "homepage": "https://github.com/pathetic777/SugarGacha",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pathetic777/SugarGacha.git"
+  },
+  "scripts": {
+    "start": "electron .",
+    "verify": "node scripts/verify-data.js",
+    "dist": "npm run verify && electron-builder --win nsis portable --x64",
+    "dist:dir": "electron-builder --win dir --x64"
+  },
+  "keywords": [
+    "ai",
+    "prompt",
+    "praise",
+    "gemini",
+    "claude",
+    "chatgpt",
+    "antigravity",
+    "desktop-widget",
+    "electron",
+    "gacha",
+    "offline",
+    "positive-reinforcement"
+  ],
+  "author": "SugarGacha contributors",
+  "license": "MIT",
+  "dependencies": {
+    "koffi": "^2.9.0"
+  },
+  "devDependencies": {
+    "electron": "^29.4.6",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "io.github.sugargacha",
+    "productName": "SugarGacha",
+    "copyright": "MIT License · SugarGacha contributors",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "config.js",
+      "index.html",
+      "data/**/*",
+      "build/icon.png",
+      "package.json",
+      "!node_modules/koffi/src/**",
+      "!node_modules/koffi/vendor/**",
+      "!node_modules/koffi/doc/**",
+      "!node_modules/koffi/build/koffi/{darwin,freebsd,linux,musl,openbsd}_*/**",
+      "!node_modules/koffi/build/koffi/win32_{arm64,ia32}/**"
+    ],
+    "asarUnpack": [
+      "node_modules/koffi/**/*"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "SugarGacha",
+      "artifactName": "SugarGacha-Setup-${version}.exe"
+    },
+    "portable": {
+      "artifactName": "SugarGacha-Portable-${version}.exe"
+    }
+  }
+}
